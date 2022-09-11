@@ -8,6 +8,16 @@ from .permissions import IsAuthorOrReadOnly
 from . import serializers
 
 
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = serializers.PostSerializer
+
+    permission_classes = (permissions.IsAuthenticated, IsAuthorOrReadOnly)
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
+
+
 class GroupViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Group.objects.all()
     serializer_class = serializers.GroupSerializer
@@ -17,8 +27,7 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = serializers.PostSerializer
 
-    permission_classes = (
-        permissions.IsAuthenticated, IsAuthorOrReadOnly)
+    permission_classes = (permissions.IsAuthenticated, IsAuthorOrReadOnly)
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
