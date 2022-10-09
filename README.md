@@ -14,7 +14,7 @@ _________
 
 + ~~Копировать~~ *Клонировать репозиторий и перейти в его папку в командной строке:*
 
-`*git clone https://github.com/coherentus/api_yatube*`
+`*https://github.com/AliaBis/api_yatube*`
 
 `cd api_yatube`
 
